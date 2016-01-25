@@ -1,6 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/*
+| -------------------------------------------------------------------
+| USER AGENT TYPES
+| -------------------------------------------------------------------
+| This file contains four arrays of user agent data. It is used by the
+| User Agent Class to help identify browser, platform, robot, and
+| mobile device data. The array keys are used to identify the device
+| and the array values are used to set the actual name of the item.
+*/
 $platforms = array(
 	'windows nt 10.0'	=> 'Windows 10',
 	'windows nt 6.3'	=> 'Windows 8.1',
@@ -18,7 +27,7 @@ $platforms = array(
 	'win98'				=> 'Windows 98',
 	'windows 95'		=> 'Windows 95',
 	'win95'				=> 'Windows 95',
-	'windows phone'		=> 'Windows Phone',
+	'windows phone'			=> 'Windows Phone',
 	'windows'			=> 'Unknown Windows OS',
 	'android'			=> 'Android',
 	'blackberry'		=> 'BlackBerry',
@@ -46,39 +55,43 @@ $platforms = array(
 	'symbian' 			=> 'Symbian OS'
 );
 
+
+// The order of this array should NOT be changed. Many browsers return
+// multiple browser types so we want to identify the sub-type first.
 $browsers = array(
-	'OPR'				=> 'Opera',
-	'Flock'				=> 'Flock',
-	'Edge'				=> 'Spartan',
-	'Chrome'			=> 'Chrome',
+	'OPR'			=> 'Opera',
+	'Flock'			=> 'Flock',
+	'Edge'			=> 'Spartan',
+	'Chrome'		=> 'Chrome',
+	// Opera 10+ always reports Opera/9.80 and appends Version/<real version> to the user agent string
 	'Opera.*?Version'	=> 'Opera',
-	'Opera'				=> 'Opera',
-	'MSIE'				=> 'Internet Explorer',
+	'Opera'			=> 'Opera',
+	'MSIE'			=> 'Internet Explorer',
 	'Internet Explorer'	=> 'Internet Explorer',
-	'Trident.* rv'		=> 'Internet Explorer',
-	'Shiira'			=> 'Shiira',
-	'Firefox'			=> 'Firefox',
-	'Chimera'			=> 'Chimera',
-	'Phoenix'			=> 'Phoenix',
-	'Firebird'			=> 'Firebird',
-	'Camino'			=> 'Camino',
-	'Netscape'			=> 'Netscape',
-	'OmniWeb'			=> 'OmniWeb',
-	'Safari'			=> 'Safari',
-	'Mozilla'			=> 'Mozilla',
-	'Konqueror'			=> 'Konqueror',
-	'icab'				=> 'iCab',
-	'Lynx'				=> 'Lynx',
-	'Links'				=> 'Links',
-	'hotjava'			=> 'HotJava',
-	'amaya'				=> 'Amaya',
-	'IBrowse'			=> 'IBrowse',
-	'Maxthon'			=> 'Maxthon',
-	'Ubuntu'			=> 'Ubuntu Web Browser'
+	'Trident.* rv'	=> 'Internet Explorer',
+	'Shiira'		=> 'Shiira',
+	'Firefox'		=> 'Firefox',
+	'Chimera'		=> 'Chimera',
+	'Phoenix'		=> 'Phoenix',
+	'Firebird'		=> 'Firebird',
+	'Camino'		=> 'Camino',
+	'Netscape'		=> 'Netscape',
+	'OmniWeb'		=> 'OmniWeb',
+	'Safari'		=> 'Safari',
+	'Mozilla'		=> 'Mozilla',
+	'Konqueror'		=> 'Konqueror',
+	'icab'			=> 'iCab',
+	'Lynx'			=> 'Lynx',
+	'Links'			=> 'Links',
+	'hotjava'		=> 'HotJava',
+	'amaya'			=> 'Amaya',
+	'IBrowse'		=> 'IBrowse',
+	'Maxthon'		=> 'Maxthon',
+	'Ubuntu'		=> 'Ubuntu Web Browser'
 );
 
 $mobiles = array(
-
+	// legacy array, old values commented out
 	'mobileexplorer'	=> 'Mobile Explorer',
 //  'openwave'			=> 'Open Wave',
 //	'opera mini'		=> 'Opera Mini',
@@ -120,7 +133,7 @@ $mobiles = array(
 	'ipaq'			=> 'HP iPaq',
 	'mot-'			=> 'Motorola',
 	'playstation portable'	=> 'PlayStation Portable',
-	'playstation 3'		    => 'PlayStation 3',
+	'playstation 3'		=> 'PlayStation 3',
 	'playstation vita'  	=> 'PlayStation Vita',
 	'hiptop'		=> 'Danger Hiptop',
 	'nec-'			=> 'NEC',
@@ -177,21 +190,22 @@ $mobiles = array(
 	'cellphone'		=> 'Generic Mobile'
 );
 
+// There are hundreds of bots but these are the most common.
 $robots = array(
-	'googlebot'		        => 'Googlebot',
-	'msnbot'		        => 'MSNBot',
-	'baiduspider'	        => 'Baiduspider',
-	'bingbot'		        => 'Bing',
-	'slurp'			        => 'Inktomi Slurp',
-	'yahoo'			        => 'Yahoo',
-	'ask jeeves'	        => 'Ask Jeeves',
-	'fastcrawler'	        => 'FastCrawler',
-	'infoseek'		        => 'InfoSeek Robot 1.0',
-	'lycos'			        => 'Lycos',
-	'yandex'		        => 'YandexBot',
+	'googlebot'		=> 'Googlebot',
+	'msnbot'		=> 'MSNBot',
+	'baiduspider'		=> 'Baiduspider',
+	'bingbot'		=> 'Bing',
+	'slurp'			=> 'Inktomi Slurp',
+	'yahoo'			=> 'Yahoo',
+	'ask jeeves'		=> 'Ask Jeeves',
+	'fastcrawler'		=> 'FastCrawler',
+	'infoseek'		=> 'InfoSeek Robot 1.0',
+	'lycos'			=> 'Lycos',
+	'yandex'		=> 'YandexBot',
 	'mediapartners-google'	=> 'MediaPartners Google',
-	'CRAZYWEBCRAWLER'	    => 'Crazy Webcrawler',
-	'adsbot-google'		    => 'AdsBot Google',
+	'CRAZYWEBCRAWLER'	=> 'Crazy Webcrawler',
+	'adsbot-google'		=> 'AdsBot Google',
 	'feedfetcher-google'	=> 'Feedfetcher Google',
-	'curious george'	    => 'Curious George'
+	'curious george'	=> 'Curious George'
 );
