@@ -12,6 +12,10 @@
 
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+        <link rel="stylesheet" href="<?php echo base_url('/assets/css'); ?>/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo base_url('/assets/css'); ?>/font-awesome.min.css">
+        <link rel="stylesheet" href="<?php echo base_url('/assets/css'); ?>/main.css">
     </head>
     <body>
         <div>

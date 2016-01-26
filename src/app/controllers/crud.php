@@ -7,7 +7,8 @@ class Crud extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper(array('url','form'));
+        $this->load->helper(array('url','form',));
+        $this->load->library(array('form_validation'));
     }
 
     public function index()
@@ -21,6 +22,16 @@ class Crud extends CI_Controller
 
     public function create()
     {
+        $this->form_validation->set_rules('nome','<strong>Nome Completo</strong>','trim|required|max_length[100]|ucwords');
+        $this->form_validation->set_rules('email','<strong>E-mail</strong>','trim|required|max_length[255]|strtolower|valid_email');
+        $this->form_validation->set_rules('login','<strong>Nome de Usuário</strong>','trim|required|max_length[50]|min_length[8]|strtolower|is_unique[estudoci.login]');
+        $this->form_validation->set_rules('password','<strong>E-mail</strong>','required');
+        $this->form_validation->set_rules('passwordrepeat','<strong>Confirmação de Senha</strong>','required|matches[password]');
+
+        if($this->form_validation->run() == true)
+        {
+            echo '<p>Validation OK - Insert into database!</p>';
+        }
         $dados = array(
             'titulo'    => 'CRUD &raquo; Create',
             'tela'      => 'create'

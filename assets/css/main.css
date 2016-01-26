@@ -1,0 +1,7 @@
+.error-message{
+    color: red;
+    font: 9px Arial, Verdana, Sans-Serif;
+}
+.error-icon{
+    margin-left: 5px;
+}
