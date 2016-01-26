@@ -7,8 +7,9 @@ class Crud extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper(array('url','form',));
-        $this->load->library(array('form_validation'));
+        $this->load->helper(array('url','form','array'));
+        $this->load->library(array('form_validation','session'));
+        $this->load->model(array('crud_model'));
     }
 
     public function index()
@@ -23,14 +24,21 @@ class Crud extends CI_Controller
     public function create()
     {
         $this->form_validation->set_rules('nome','<strong>Nome Completo</strong>','trim|required|max_length[100]|ucwords');
-        $this->form_validation->set_rules('email','<strong>E-mail</strong>','trim|required|max_length[255]|strtolower|valid_email');
-        $this->form_validation->set_rules('login','<strong>Nome de Usuário</strong>','trim|required|max_length[50]|min_length[8]|strtolower|is_unique[estudoci.login]');
-        $this->form_validation->set_rules('password','<strong>E-mail</strong>','required');
+        $this->form_validation->set_rules('email','<strong>E-mail</strong>','trim|required|max_length[255]|strtolower|valid_email|is_unique[estudoci.email]');
+        $this->form_validation->set_rules('login','<strong>Nome de Usuário</strong>','trim|required|max_length[32]|is_unique[estudoci.login]');
+        $this->form_validation->set_rules('password','<strong>Senha</strong>','required');
         $this->form_validation->set_rules('passwordrepeat','<strong>Confirmação de Senha</strong>','required|matches[password]');
 
         if($this->form_validation->run() == true)
         {
-            echo '<p>Validation OK - Insert into database!</p>';
+            $post = elements(array('nome','email','login','password'),$this->input->post());
+            $data = array(
+                'nome'=>$post['nome'],
+                'email'=>$post['email'],
+                'login'=>$post['login'],
+                'senha'=>md5($post['password'])
+            );
+            $this->crud_model->insertData($data);
         }
         $dados = array(
             'titulo'    => 'CRUD &raquo; Create',

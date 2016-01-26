@@ -67,6 +67,14 @@ echo form_open('crud/create'); // Abertura do form
     echo '<br><hr>';
     // Botão Submit
     echo form_submit(array('name'=>'cadastrar','value'=>'Cadastrar', 'class'=>'btn btn-default'));
+
 echo form_close(); // Fechamento do form
 echo '</div>';
 echo '</div>';
+if($this->session->flashdata('cadastro_status') != NULL)
+{
+    $status = $this->session->flashdata('cadastro_status');
+    $mensagem = $this->session->flashdata('cadastro_mensagem');
+    $tipo = $this->session->flashdata('cadastro_tipo');
+    echo '<span class="alert" data-alert="'.$status.'" data-alert-message="'.$mensagem.'" data-type="'.$tipo.'"></span>';
+}

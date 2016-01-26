@@ -1,7 +1,7 @@
-.error-message{
-    color: red;
-    font: 9px Arial, Verdana, Sans-Serif;
-}
-.error-icon{
-    margin-left: 5px;
-}
+.spacer-v-20{height:20px;display:block;}
+
+/* Form errors messages */
+.error-message{color:red;font:9px Arial, Verdana, Sans-Serif;}
+.error-icon{margin-left:5px;}
+
+.modal-alert-success{padding:70px 20px 20px 20px;background:url('../img/success.png') no-repeat center top white;}
