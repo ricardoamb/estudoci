@@ -12,6 +12,6 @@ echo form_open('crud/create'); // Abertura do form
     echo form_password(array('id'=>'password','class'=>'input-text','name'=>'password'));
     echo form_label('Repita a Senha: ');
     echo form_password(array('id'=>'password2','class'=>'input-text','name'=>'password2'));
-    echo form_submit(array('name'=>'cadastrat','value'=>'Cadastrar'));
+    echo form_submit(array('name'=>'cadastrat','value'=>'Cadastrar', 'class'=>'btn btn-primary'));
 
 echo form_close(); // Fechamento do form
