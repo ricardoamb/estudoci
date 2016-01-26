@@ -51,7 +51,8 @@ class Crud extends CI_Controller
     {
         $dados = array(
             'titulo'    => 'CRUD &raquo; Retrieve',
-            'tela'      => 'update'
+            'tela'      => 'retrieve',
+            'usuarios'  => $this->crud_model->getAll()->result()
         );
         $this->load->view('crud', $dados);
     }
