@@ -1,8 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 echo '<div class="container">';
-echo '<div class="col-md-4">';
-echo '<h4>Formulário de Cadastro (Create)</h4>';
-echo '<hr>';
+echo '<div class="page-header">';
+    echo '<h1>Lista de Usuários <small>(Retrieve)</small></h1>';
+echo '</div>';
+echo '<div class="col-md-6">';
 echo form_open('crud/create'); // Abertura do form
     // Campo Nome
     echo '<div class="form-group">';
