@@ -8,7 +8,7 @@ class Crud extends CI_Controller
     {
         parent::__construct();
         $this->load->helper(array('url','form','array'));
-        $this->load->library(array('form_validation','session'));
+        $this->load->library(array('form_validation','session','table'));
         $this->load->model(array('crud_model'));
     }
 
@@ -59,6 +59,19 @@ class Crud extends CI_Controller
 
     public function update()
     {
+        $this->form_validation->set_rules('nome','<strong>Nome Completo</strong>','trim|required|max_length[100]|ucwords');
+        $this->form_validation->set_rules('password','<strong>Senha</strong>','required');
+        $this->form_validation->set_rules('passwordrepeat','<strong>Confirmação de Senha</strong>','required|matches[password]');
+
+        if($this->form_validation->run() == true)
+        {
+            $post = elements(array('nome','email','login','password'),$this->input->post());
+            $data = array(
+                'nome'=>$post['nome'],
+                'senha'=>md5($post['password'])
+            );
+            $this->crud_model->updateData($data,array('id'=>$this->input->post('idusuario')));
+        }
         $dados = array(
             'titulo'    => 'CRUD &raquo; Update',
             'tela'      => 'update'
@@ -68,6 +81,9 @@ class Crud extends CI_Controller
 
     public function delete()
     {
+        if($this->input->post('idusuario') > 0){
+            $this->crud_model->deleteById(array('id'=>$this->input->post('idusuario')));
+        }
         $dados = array(
             'titulo'    => 'CRUD &raquo; Delete',
             'tela'      => 'delete'

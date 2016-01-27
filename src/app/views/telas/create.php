@@ -1,9 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 echo '<div class="container">';
 echo '<div class="page-header">';
-    echo '<h1>Lista de Usuários <small>(Retrieve)</small></h1>';
+    echo '<h1>Cadastro de Usuários <small>(Create)</small></h1>';
 echo '</div>';
-echo '<div class="col-md-6">';
+echo '<div class="col-md-6 into">';
 echo form_open('crud/create'); // Abertura do form
     // Campo Nome
     echo '<div class="form-group">';
@@ -64,8 +64,8 @@ echo form_open('crud/create'); // Abertura do form
         ),set_value('passwordrepeat'));
     echo '</div>';
     echo form_error('passwordrepeat','<p class="error-message pull-right">','<i class="fa fa-warning fa-lg error-icon"></i></p>');
-
-    echo '<br><hr>';
+    echo '<div class="clearfix"></div>';
+    echo '<hr>';
     // Botão Submit
     echo form_submit(array('name'=>'cadastrar','value'=>'Cadastrar', 'class'=>'btn btn-default'));
 
